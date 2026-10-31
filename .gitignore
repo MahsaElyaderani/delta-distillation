@@ -1,0 +1,20 @@
+# Local environments and caches
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.idea/
+
+# Datasets, weights and generated outputs (not the selection manifest)
+datasets/
+ILSVRC2015/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.tar.gz
+exp/
+baseline/results*/
+baseline/visuals/
+*.mp4
+*.avi

@@ -1,3 +1,46 @@
+# Classical Tracking Baselines for Delta Distillation
+
+An experimental extension by **Mahsa Elyaderani** comparing the original Delta
+Distillation teacher + student with **teacher + SORT prediction-only, KLT, and
+SORT + KLT**. Each clip uses one EfficientDet-D0 teacher keyframe followed by
+up to nine student/tracking frames.
+
+[Run the comparison](baseline/README.md#running-and-visualizing) ·
+[Results and limitations](baseline/README.md#measured-results) ·
+[Visual examples](baseline/README.md#qualitative-examples) ·
+[Cite this extension](CITATION.cff)
+
+![Four-method comparison on an ImageNet VID airplane frame](baseline/assets/airplane-frame91.jpg)
+
+Top: Delta Distillation / SORT. Bottom: KLT / SORT + KLT.
+Green boxes are ground truth; orange boxes are predictions.
+
+| Method | mAP50 (%) | CPU FPS |
+| --- | ---: | ---: |
+| Delta Distillation (teacher + student) | 70.33 | 2.91 |
+| Teacher + SORT prediction-only | 65.82 | 43.87 |
+| Teacher + KLT | 70.45 | 28.62 |
+| Teacher + SORT + KLT | 70.23 | 28.01 |
+
+Single-run results on **2,772 frames from 30 selected ImageNet VID videos**,
+with one configured CPU thread and score threshold 0.1. FPS includes teacher
+cost. These are subset results, not a full benchmark; hardware details and
+repeated timing measurements are still needed. SORT-only holds boxes stationary
+between keyframes. See the [full measurement scope](baseline/README.md#interpretation-and-measurement-scope).
+
+The extension includes evaluation scripts, the frame-selection manifest, CPU
+metrics, and visualization tools. Obtain the images separately from
+[ImageNet VID](https://huggingface.co/datasets/guanxiongsun/imagenetvid/tree/main).
+Datasets, checkpoints, and prediction videos are excluded from this repository.
+
+**Citation:** Mahsa Elyaderani. *Classical Tracking Baselines for Delta Distillation*,
+version 1.0.0 (2026). [Tagged release](https://github.com/MahsaElyaderani/delta-distillation/releases/tag/baselines-v1.0.0).
+Please also cite the original Delta Distillation paper below. This extension was
+implemented with AI assistance; the contributor is responsible for validation.
+Upstream license and copyright notices are retained.
+
+---
+
 # Delta Distillation for Efficient Video Processing
 
 This repository contains the implementation and experiments for the paper presented in

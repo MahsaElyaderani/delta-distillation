@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Cite this record for the classical tracking extension; also cite the original Delta Distillation paper linked in the README."
+type: software
+title: "Classical Tracking Baselines for Delta Distillation"
+authors:
+  - family-names: "Elyaderani"
+    given-names: "Mahsa"
+version: "1.0.0"
+date-released: "2026-10-31"
+url: "https://github.com/MahsaElyaderani/delta-distillation/releases/tag/baselines-v1.0.0"
+repository-code: "https://github.com/MahsaElyaderani/delta-distillation"
+abstract: "Experimental SORT prediction-only, sparse KLT, and SORT + KLT baselines using EfficientDet-D0 teacher keyframes, compared with Delta Distillation on a selected ImageNet VID subset."
+keywords:
+  - video object detection
+  - tracking
+  - optical flow
+  - delta distillation

@@ -9,6 +9,16 @@ This repository contains the implementation and experiments for the paper presen
 
 You can use this code to recreate the main results in the paper.
 
+## Extensions in this fork
+
+This fork adds [classical tracking baselines](baseline/README.md) comparing
+EfficientDet-D0 keyframes followed by SORT prediction-only, sparse KLT, or
+SORT + KLT against the learned Delta Distillation student. The extension includes
+reproducible frame selection, evaluation, visualization, and measured subset results.
+It was implemented with AI assistance; experimental validation and interpretation
+remain the contributor's responsibility. The original implementation and license
+notices are retained.
+
 ## What is Delta Distillation?
 Delta Distillation is a technique to speed-up the processing of videos. 
 Let's say you have a stream of frames and a neural network that processes them one by one.

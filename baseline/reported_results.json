@@ -1,0 +1,86 @@
+{
+  "cpu": {
+    "arguments": {
+      "device": "cpu",
+      "score_threshold": 0.1,
+      "threads": 1,
+      "max_clips": 0
+    },
+    "frames": 2772,
+    "clips": 279,
+    "results": {
+      "delta": {
+        "AP": 0.47279013589832464,
+        "ms_per_frame": 343.7376943831143,
+        "FPS": 2.909195052915686,
+        "neural_conv_GFLOPs_per_frame": 1.2693454752467532,
+        "mAP50": 0.7033115786994977
+      },
+      "sort": {
+        "AP": 0.4037821834561923,
+        "ms_per_frame": 22.794150977642726,
+        "FPS": 43.87090359192732,
+        "neural_conv_GFLOPs_per_frame": 0.4643021243766234,
+        "mAP50": 0.6581600350352643
+      },
+      "flow": {
+        "AP": 0.4812239542172996,
+        "ms_per_frame": 34.936129331175835,
+        "FPS": 28.62366321467769,
+        "neural_conv_GFLOPs_per_frame": 0.4643021243766234,
+        "mAP50": 0.704471619852549
+      },
+      "sort_flow": {
+        "AP": 0.47021284211942566,
+        "ms_per_frame": 35.70215490584681,
+        "FPS": 28.009513785293496,
+        "neural_conv_GFLOPs_per_frame": 0.4643021243766234,
+        "mAP50": 0.7022790892749102
+      }
+    },
+    "flops_scope": "Convolution FLOPs only, 2 FLOPs/MAC plus bias additions. Excludes optical flow, Kalman, activations and NMS; not total pipeline FLOPs. Includes actual padded delta computation on short clips.",
+    "timing": "Warmup excluded; includes normalization, transfer, inference/postprocess, and tracking. Excludes image loading/resizing, JSON and scoring. Delta uses clip batching; not a streaming latency measurement."
+  },
+  "cuda": {
+    "arguments": {
+      "device": "cuda",
+      "score_threshold": 0.001,
+      "threads": 1,
+      "max_clips": 0
+    },
+    "frames": 2772,
+    "clips": 279,
+    "results": {
+      "delta": {
+        "AP": 0.47740857926089436,
+        "ms_per_frame": 11.441319436148024,
+        "FPS": 87.40250681582862,
+        "neural_conv_GFLOPs_per_frame": 1.2693454752467532,
+        "mAP50": 0.7113264492670053
+      },
+      "sort": {
+        "AP": 0.40937394618295464,
+        "ms_per_frame": 4.138151968252171,
+        "FPS": 241.6537642097203,
+        "neural_conv_GFLOPs_per_frame": 0.4643021243766234,
+        "mAP50": 0.6722285991998904
+      },
+      "flow": {
+        "AP": 0.4863600097897337,
+        "ms_per_frame": 196.46478580555774,
+        "FPS": 5.089970683039888,
+        "neural_conv_GFLOPs_per_frame": 0.4643021243766234,
+        "mAP50": 0.7162967092548491
+      },
+      "sort_flow": {
+        "AP": 0.4754908671860633,
+        "ms_per_frame": 206.08188262842688,
+        "FPS": 4.852440142945686,
+        "neural_conv_GFLOPs_per_frame": 0.4643021243766234,
+        "mAP50": 0.7144914965125955
+      }
+    },
+    "flops_scope": "Convolution FLOPs only, 2 FLOPs/MAC plus bias additions. Excludes optical flow, Kalman, activations and NMS; not total pipeline FLOPs. Includes actual padded delta computation on short clips.",
+    "timing": "Warmup excluded; includes normalization, transfer, inference/postprocess, and tracking. Excludes image loading/resizing, JSON and scoring. Delta uses clip batching; not a streaming latency measurement."
+  }
+}

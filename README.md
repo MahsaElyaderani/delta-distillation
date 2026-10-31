@@ -1,6 +1,6 @@
 # Classical Tracking Baselines for Delta Distillation
 
-An experimental extension by **Mahsa Elyaderani** comparing the original Delta
+An experimental extension comparing the original Delta
 Distillation teacher + student with **teacher + SORT prediction-only, KLT, and
 SORT + KLT**. Each clip uses one EfficientDet-D0 teacher keyframe followed by
 up to nine student/tracking frames.

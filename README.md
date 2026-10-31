@@ -1,8 +1,7 @@
 # Classical Tracking Baselines for Delta Distillation
 
 An experimental extension comparing the original Delta
-Distillation teacher + student with **teacher + SORT prediction-only, KLT, and
-SORT + KLT**. Each clip uses one EfficientDet-D0 teacher keyframe followed by
+Distillation teacher + student with **teacher + SORT, KLT, and SORT + KLT**. Each clip uses one EfficientDet-D0 teacher keyframe followed by
 up to nine student/tracking frames.
 
 [Run the comparison](baseline/README.md#running-and-visualizing) ·

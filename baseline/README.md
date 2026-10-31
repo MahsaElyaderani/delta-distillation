@@ -97,7 +97,8 @@ if it lives elsewhere. No manual `PYTHONPATH` setting is needed for the checkout
 
 The default is the bundled [`selection.json`](selection.json), resolved relative
 to the script. It contains relative VID frame paths and ground truth, not images.
-Supply the original ImageNet VID JPEGs with `--frames`; use `--selection` for a different manifest.
+Dataset: [ImageNet VID on Hugging Face](https://huggingface.co/datasets/guanxiongsun/imagenetvid/tree/main).
+Supply the extracted ImageNet VID JPEGs with `--frames`; use `--selection` for a different manifest.
 Only its 2,772 frames from 30 ImageNet VID videos are evaluated. Ground truth
 comes from this manifest, and original JPEGs come from the local ImageNet VID
 folder. No full-validation annotation file is loaded.

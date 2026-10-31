@@ -21,27 +21,11 @@ All four methods run on CPU. Source: [`reported_results.json`](reported_results.
 | Teacher + SORT + KLT | 70.23 | 47.02 | 28.01 | 35.70 | 0.464 |
 
 
-### CUDA detector with CPU tracking: one configured CPU thread, threshold 0.001
-
-The neural model runs on GPU; SORT and KLT remain on CPU.
-Source: [`reported_results.json`](reported_results.json), `cuda` entry.
-
-
-| Method | mAP50 (%) | AP50:95 (%) | FPS | ms/frame | Neural conv. GFLOPs/frame |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Delta Distillation (teacher + student) | 71.13 | 47.74 | 87.40 | 11.44 | 1.269 |
-| Teacher + SORT prediction only | 67.22 | 40.94 | 241.65 | 4.14 | 0.464 |
-| Teacher + KLT | 71.63 | 48.64 | 5.09 | 196.46 | 0.464 |
-| Teacher + SORT + KLT | 71.45 | 47.55 | 4.85 | 206.08 | 0.464 |
-
-
 ### Interpretation and measurement scope
 
 - The CPU KLT baseline achieved 70.45% mAP50 at 28.62 FPS, versus 70.33% at
   2.91 FPS for this Delta Distillation implementation. This is an observed
   subset result, not evidence of general superiority or statistical significance.
-- The CPU and CUDA runs use different score thresholds. Their differences do
-  **not** isolate the effect of hardware; compare methods within each table.
 - FPS includes the teacher cost plus student/tracking computation, normalization,
   transfers and detector postprocessing. Warmup, image loading/resizing, JSON
   writing and metric evaluation are excluded. Delta processes batched clips;
@@ -50,10 +34,30 @@ Source: [`reported_results.json`](reported_results.json), `cuda` entry.
 - GFLOPs count neural convolutions only (2 FLOPs per multiply-accumulate plus
   bias additions), excluding KLT, Kalman, activations and NMS. They are not total
   pipeline costs and do not use the paper's multiply-add counting convention.
-- The saved summaries do not record CPU/GPU model names or server software
+- The saved CPU summary does not record the processor model or server software
   versions. These details and repeated timing runs are still needed for a
   reproducible performance report. The local dependency versions below are
-  not a record of the server environment used for these tables.
+  not a record of the server environment used for this table.
+
+## Qualitative examples
+
+Snapshots from the saved CPU evaluation, showing the tenth frame of the first
+clip in selected videos 39, 93 and 332. Panels show Delta Distillation / SORT
+on top and KLT / SORT + KLT below. **Green:** ground truth. **Orange:** predictions.
+These examples include classification and localization errors; use the table
+above to compare performance across the complete selection.
+
+**Airplane — video 39, frame 91.**
+
+![Four-method comparison of an airplane](assets/airplane-frame91.jpg)
+
+**Bears — video 93, frame 383.** This scene illustrates incorrect class predictions.
+
+![Four-method comparison showing errors in a bear scene](assets/bears-frame383.jpg)
+
+**Dog — video 332, frame 9.** A challenging close-up with localization errors.
+
+![Four-method comparison of a close-up dog](assets/dog-frame9.jpg)
 
 ## Running and visualizing
 
@@ -81,7 +85,9 @@ python /path/to/evaluate_tracking.py \
   --frames /path/to/ILSVRC2015/Data/VID \
   --selection /path/to/selection.json \
   --output /path/to/results \
-  --device cuda \
+  --device cpu \
+  --threads 1 \
+  --score-threshold 0.1 \
   --max-clips 1
 ```
 
@@ -117,7 +123,7 @@ box in `flow`, and uses Kalman prediction in `sort_flow`.
 
 All methods share preprocessing, NMS, score threshold (0.1), selected frames,
 and ground truth. All trackers copy the first-frame teacher detections from the
-delta run, ensuring identical keyframe inputs despite GPU batch-size rounding
+delta run, ensuring identical keyframe inputs despite batch-size numerical differences
 and NMS ordering differences. A separate single-frame teacher call measures
 the teacher cost charged to each tracker; its detections are not used. Short clips
 are padded for delta inference only; padded outputs are never scored. Frames

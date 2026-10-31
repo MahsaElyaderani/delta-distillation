@@ -33,7 +33,7 @@ metrics, and visualization tools. Obtain the images separately from
 [ImageNet VID](https://huggingface.co/datasets/guanxiongsun/imagenetvid/tree/main).
 Datasets, checkpoints, and prediction videos are excluded from this repository.
 
-**Citation:** Mahsa Elyaderani. *Classical Tracking Baselines for Delta Distillation*,
+**Citation:** *Classical Tracking Baselines for Delta Distillation*,
 version 1.0.0 (2026). [Tagged release](https://github.com/MahsaElyaderani/delta-distillation/releases/tag/baselines-v1.0.0).
 Please also cite the original Delta Distillation paper below. This extension was
 implemented with AI assistance; the contributor is responsible for validation.
